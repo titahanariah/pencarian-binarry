@@ -1,0 +1,100 @@
+
+ 
+ 
+BAB II
+ 
+PEMBAHASAN
+ 
+1.
+ 
+Konsep
+ 
+Pengertian
+ Sebuah algoritma pencarian biner (atau pemilahan biner) adalah sebuah teknik untuk menemukan nilai tertentu dalam sebuah larik (array) linear, dengan menghilangkan setengah data  pada setiap langkah, dipakai secara luas tetapi tidak secara ekslusif dalam ilmu komputer. Sebuah pencarian biner mencari nilai tengah (median), melakukan sebuah pembandingan untuk menentukan apakah nilai yang dicari ada sebelum atau sesudahnya, kemudian mencari setengah sisanya dengan cara yang sama. Pada intinya, algoritma ini menggunakan prinsip divide and conquer, dimana sebuah masalah atau tujuan diselesaikan dengan cara mempartisi masalah menjadi bagian yang lebih kecil. Algoritma ini membagi sebuah tabel menjadi dua dan memproses satu bagian dari tabel itu saja.Algoritma ini bekerja dengan cara memilih record dengan indeks tengah dari tabel dan membandingkannya dengan record yang hendak dicari. Jika record tersebut lebih rendah atau lebih tinggi, maka tabel tersebut dibagi dua dan bagian tabel yang bersesuaian akan diproses kembali secara rekursif. Penerapan terbanyak dari pencarian biner adalah untuk mencari sebuah nilai tertentu dalam sebuah list terurut. Jika dibayangkan, pencarian biner dapat dilihat sebagai sebuah  permainan tebak-tebakan, kita menebak sebuah bilangan, atau nomor tempat, dari daftar (
+list 
+) nilai. Pencarian diawali dengan memeriksa nilai yang ada pada posisi tengah list; oleh karena nilai-nilainya terurut, kita mengetahui apakah nilai terletak sebelum atau sesudah nilai yang di tengah tersebut, dan pencarian selanjutnya dilakukan terhadap setengah bagian dengan cara yang sama.
+Metoda Pencarian Biner ( Binary Search) hanya bisa diterapkan jika data array sudah terurut.
+ Pengurutan Array bisa menggunakan jenis sorting descending atau asscending
+	  Pencarian biner adalah proses mencari data dengan membagi atas dua bagian
+secara terus menerus sampai elemen yang di cari sudah di temukan, atau indeks
+kiri lebih besar dari indeks kanan.
+   Algoritma ini lebih efisien dari pada algoritma pencarian sekuensial, tetapi
+pencarian ini mempunyai syarat yaitu bahwa kumpulan data yang harus dilakukan pencarian
+ini harus sudah terurut terlebih dahulu, baik terurut secara menaik (ascendant) atau 
+menurun (descendant). Karena data sudah terurut, algoritma dapat menentukan apabila nilai
+data yang dicari berada sebelum atau sesudah elemen larik yang sedang di bandingkan pada
+suatu saat. Dengan cara ini, algoritma dapat lebih menghemat waktu pencarian.
+   Pencarian dalam data terurut bermanfaat misalnya pada penyimpanan data dengan beberapa
+komponen, program dapat mencari sebuah indeks terurut. Setelah menemukan indeks yang dicari,
+program dapat membaca data lain yang bersesuaian dengan indeks yang ditemukan tersebut.
+
+*Algoritma pencarian biner dengan elemen larik terurut menaik:
+
+-PROCEDURE BinSearch(input L:array[1..N] of integer, input N:integer, input X:integer, output
+idx:integer)
+-IS: Terdapat array berisi data angka terurut menaik
+FS: Mengembalikan posisi data yang dicari jika ketemu, dan mengembalikan -1 jika tidak ketemu
+-KAMUS DATA
+i,j,k : integer
+ketemu : boolean
+
+1.BEGIN
+2.1<-0
+3.j<-N
+4.ketemu <- false
+5.WHILE ((!ketemu) and (i<=j))
+6.k<-(i+j) div 2
+7.IF (L[k] = X)
+8.ketemu = true
+9.ELSE
+10.IF (L[k] < X)
+11.i<-k+1
+12.ELSE
+13.j<-k-1
+14.ENDIF
+15.ENDIF
+16.ENDWHILE
+17.IF(ketemu)
+18.idx<- -1
+19.ELSE
+20.idx<- -1
+21.ENDIF
+22.END
+
+   Prosedur di atas bekerja untuk pencarian data di dalam larik, dimana data terurut menurun
+(dari besar ke kecil). Jika nilai di temukan dalam larik, prosedur mengembalikan nilai idx
+(indeks elemen larik yang nilai nya sama dengan nilai yang di cari). Jika semua elemen larik
+sudah di bandingkan dengan nilai yang dicari namun tidak di temukan, prosedur akan mengembalikan
+nilai idx<- -1 (penanda bahwa nilai yang dicari tidak di temukan dalam larik).
+   Contoh penggunaan algoritma biner untuk elemen terurut menurun adalah sebagai berikut:
+
+Elemen     81  76  21  28  16  13  10  7
+(terurut)  81  76  28  21  16  13  10  7
+index	   0   1   2   3   4   5   6   7
+
+   Misalkan nilai yang dicari: X=13 jumlah elemen: N=8. Dengan pencarian biner, elemen yang di
+gunakan adalah elemen terurut (baris kedua).
+Urutan penyelesaian persoalan ini adalah sebagai berikut:
+	1. Prosedur melakukan inisialisasi perulangan (iterasi pertama)
+	   i=0;
+	   j=8;
+	   k=(0+8) div 2 = 4
+	2. Prosedur menguji apakah L[4]=13?
+	   Tidak. L[4]=16. Maka prosedur perlu memutuskan pencarian dilanjutkan ke kiri/ke kanan.
+	3. Prosedur melakukan inisialisasi perulangan (iterasi kedua)
+	   i=k+l=5;
+	   j=8;
+	   k=(5+8) div 2 = 6
+	4. Prosedur menguji apakah L[6]=13?
+	   Tidak. L[6]=10. Maka prosedur perlu memutuskan apakah pencarian dilanjutkan ke kiri/
+	   ke kanan.
+	   L[6]<13? Ya. 10 < 13. Maka prosedur melakukan pencarian di sebelah kiri, dengan mengubah
+	   batas j menjadi k-1.
+	5. Prosedur melakukan inisialisasi perulangan (iterasi ketiga)
+	   i=5;
+	   j=k-l=5;
+	   k=(5+5) div 2 = 5
+	6. Prosedur menguji apakah L[5]=13?
+	   Ya. Maka variabel ketemu = true dan prosedur mengembalikan nilai k=5.
+   Maka, dalam tiga iterasi prosedur pencarian biner dapat menemukan nilai X=16 yang di cari pada
+larik tersebut.
